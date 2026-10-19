@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "name": "Urban Ride",
+  "description": "A personal ride-hailing application project.",
+  "phase": "initial_setup",
+  "currentObjective": "Establish a repository-based project hub for Codex-assisted work.",
+  "productScopeStatus": "unconfirmed",
+  "productArchitectureStatus": "unconfirmed",
+  "sourceRepository": {
+    "proposedName": "urban-ride-code",
+    "location": null
+  },
+  "updatedAt": "2026-10-19T14:46:22+00:00"
+}
