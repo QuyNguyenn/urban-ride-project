@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "tasks": [
+    {
+      "id": "HUB-001",
+      "title": "Bootstrap the Codex project hub",
+      "scope": "project-hub",
+      "status": "done",
+      "priority": "high",
+      "milestone": null,
+      "acceptanceCriteria": [
+        "Document repository boundaries, language, Codex workflow, and Git conventions.",
+        "Validate versioned tracking data and invalid references automatically.",
+        "Display original tracking data and honest product empty states in a React, TypeScript, and Vite dashboard.",
+        "Pass validation regression tests, typecheck, and static build; configure CI for PRs and the actual default branch."
+      ],
+      "dependencies": [],
+      "blocker": null,
+      "updatedAt": "2026-10-19T14:46:22+00:00",
+      "verification": {
+        "status": "passed",
+        "evidence": [
+          "npm --prefix dashboard run check: validation passed, 17 regression tests passed, TypeScript passed, production build passed on Node.js 24.14.0.",
+          "Firefox local production preview: project metadata, separate work scopes, product empty states, blockers, handoff, and expandable acceptance criteria confirmed."
+        ]
+      },
+      "references": [
+        "docs/decisions/0001-project-hub-data.md"
+      ]
+    }
+  ]
+}

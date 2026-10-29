@@ -1,0 +1,162 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tasks version 1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^(UR|HUB)-[0-9]{3,}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "scope": {
+            "enum": [
+              "product",
+              "project-hub"
+            ]
+          },
+          "status": {
+            "enum": [
+              "todo",
+              "in_progress",
+              "blocked",
+              "done",
+              "cancelled"
+            ]
+          },
+          "priority": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "milestone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "acceptanceCriteria": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "uniqueItems": true
+          },
+          "blocker": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "nextAction": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  }
+                },
+                "required": [
+                  "reason",
+                  "nextAction"
+                ]
+              }
+            ]
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$"
+          },
+          "verification": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "status": {
+                "enum": [
+                  "pending",
+                  "passed",
+                  "failed",
+                  "not_applicable"
+                ]
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "status",
+              "evidence"
+            ]
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "scope",
+          "status",
+          "priority",
+          "milestone",
+          "acceptanceCriteria",
+          "dependencies",
+          "blocker",
+          "updatedAt",
+          "verification",
+          "references"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "tasks"
+  ]
+}
